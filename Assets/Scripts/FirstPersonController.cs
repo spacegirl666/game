@@ -268,7 +268,7 @@ namespace StarterAssets
 
 		private void OnClick() {
 
-			print("YES IT WORKED OMG I'M A FUCKING GENIOUS");
+			//print("YES IT WORKED OMG I'M A FUCKING GENIOUS");
 		
 		}
 	}
