@@ -21,15 +21,15 @@ namespace StarterAssets
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 
-		[Space(10)]
-		[Tooltip("The height the player can jump")]
-		public float JumpHeight = 1.2f;
+		// [Space(10)]
+		// [Tooltip("The height the player can jump")]
+		// public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
 		public float Gravity = -15.0f;
 
-		[Space(10)]
-		[Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-		public float JumpTimeout = 0.1f;
+		// [Space(10)]
+		// [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
+		// public float JumpTimeout = 0.1f;
 		[Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
 		public float FallTimeout = 0.15f;
 
@@ -61,7 +61,7 @@ namespace StarterAssets
 		private float _terminalVelocity = 53.0f;
 
 		// timeout deltatime
-		private float _jumpTimeoutDelta;
+		//private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
 	
@@ -106,7 +106,7 @@ namespace StarterAssets
 #endif
 
 			// reset our timeouts on start
-			_jumpTimeoutDelta = JumpTimeout;
+			//_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 		}
 
@@ -196,6 +196,7 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			
 		}
 
 		private void JumpAndGravity()
@@ -212,31 +213,31 @@ namespace StarterAssets
 				}
 
 				// Jump
-				if (_input.jump && _jumpTimeoutDelta <= 0.0f)
-				{
-					// the square root of H * -2 * G = how much velocity needed to reach desired height
-					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-				}
+				// if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+				// {
+				// 	// the square root of H * -2 * G = how much velocity needed to reach desired height
+				// 	_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+				// }
 
 				// jump timeout
-				if (_jumpTimeoutDelta >= 0.0f)
-				{
-					_jumpTimeoutDelta -= Time.deltaTime;
-				}
+				// if (_jumpTimeoutDelta >= 0.0f)
+				// {
+				// 	_jumpTimeoutDelta -= Time.deltaTime;
+				// }
 			}
 			else
 			{
 				// reset the jump timeout timer
-				_jumpTimeoutDelta = JumpTimeout;
+				//_jumpTimeoutDelta = JumpTimeout;
 
 				// fall timeout
-				if (_fallTimeoutDelta >= 0.0f)
-				{
-					_fallTimeoutDelta -= Time.deltaTime;
-				}
+				// if (_fallTimeoutDelta >= 0.0f)
+				// {
+				// 	_fallTimeoutDelta -= Time.deltaTime;
+				// }
 
 				// if we are not grounded, do not jump
-				_input.jump = false;
+				//_input.jump = false;
 			}
 
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -263,6 +264,12 @@ namespace StarterAssets
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+		}
+
+		private void OnClick() {
+
+			print("YES IT WORKED OMG I'M A FUCKING GENIOUS");
+		
 		}
 	}
 }
